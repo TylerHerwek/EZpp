@@ -129,3 +129,6 @@ There are a lot of resources to learn the SDL2 event syntax.
 
 Key input: https://www.youtube.com/watch?v=YfGYU7wWLo8&t=206s.
 Mouse events: https://www.youtube.com/watch?v=4Gq-gnMyJa0&t=153s.
+
+In the EZ++Extention library there are also a lot of other Main Class Extentions that handle basic tasks like proper WASD-Controls and Mouse-Tracking
+feel free to explore and add on, as the source code is open for everyone, parsed in folders: [src/, ext/].
