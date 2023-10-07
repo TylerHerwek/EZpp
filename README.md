@@ -39,7 +39,7 @@ New Features will probably be added soon.
     #---specify these with the -l flag and then the libary file without the "lib"
     #---at the beginning and the extention at the end (e.g. .a, .la, .dll, ...)
     #The here specified ones are the minimum, but you can add as many as you need or want
-    EZ_LIB := -lEZ++ -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf
+    LIB := -lEZ++ -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf
 
     #Output executable
     OUT := output/main.exe
@@ -48,7 +48,7 @@ New Features will probably be added soon.
     #this will compile your main.cpp file
     all:
       @echo "compiling..."
-      g++ $(_INC) main.cpp $(EZ_LIB) -o $(OUT)
+      g++ $(EZ_INC) main.cpp $(LIB) -o $(OUT)
       @echo "Compiled successfully! Now running..."
       ./$(OUT)
   
@@ -65,6 +65,13 @@ New Features will probably be added soon.
 The ::Main class has all the configuration you need, when you don't want to do it manually.
 Just create a class that inherits ::Main and override its Events(), Render() and Update() (optionally the OnClick()) methods and add desired funtionality.
 
+First, add the EZ++Extention file to your makefile:
+    
+```make
+    LIB := -lEZ++_Ext -lEZ++ -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf
+```
+It's important that the EZ++Extention file is before the main EZ++ library file. 
+
 This library does not have its own event interface yet, so for event handling you just use the SDL2 syntax.
 
 Here is an example of a main.cpp file
@@ -75,7 +82,7 @@ Here is an example of a main.cpp file
   class Program : public ::Main {
   public:
     Program()
-    : ::Main(new EZ::Window("Example", 10, 10, 800, 800)) {}
+    : EZ::Main(new EZ::Window("Example", 10, 10, 800, 800)) {}
 
     void Events() override {
       switch(event.type) {
