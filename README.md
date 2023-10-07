@@ -33,7 +33,7 @@ New Features will probably be added soon.
     #-I are the EZ++ header files this one you can include in your
     #---C++ File and you should also link it io your compiler
     #-L is the library directory where all the necessary libaryfiles are included
-    EZ_INC := -I"..//inc" -L"..//lib"
+    EZ_INC := -I"path/to/EZ++/inc" -L"path/to/EZ++/lib"
 
     #These are the specific libarys from my -L directory
     #---specify these with the -l flag and then the libary file without the "lib"
