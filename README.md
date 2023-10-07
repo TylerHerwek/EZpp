@@ -33,21 +33,16 @@ New Features will probably be added soon.
 
   ```make
     
-    #-I are the nodes header files this one you can include in your
+    #-I are the EZ++ header files this one you can include in your
     #---C++ File and you should also link it io your compiler
     #-L is the library directory where all the necessary libaryfiles are included
-    NODES_INC := -I"../Nodes/inc" -L"../Nodes/lib"
+    EZ_INC := -I"..//inc" -L"..//lib"
 
     #These are the specific libarys from my -L directory
     #---specify these with the -l flag and then the libary file without the "lib"
     #---at the beginning and the extention at the end (e.g. .a, .la, .dll, ...)
     #The here specified ones are the minimum, but you can add as many as you need or want
-    NODES_LIB := -lNodes -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf
-
-
-    #the Nodes dll file directory.
-    #You need to copy those into your output directory to run the executable
-    NODES_BIN := ../Nodes/bin
+    EZ_LIB := -lEZ++ -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf
 
     #Output executable
     OUT := output/main.exe
@@ -56,49 +51,34 @@ New Features will probably be added soon.
     #this will compile your main.cpp file
     all:
       @echo "compiling..."
-      g++ $(NODES_INC) main.cpp $(NODES_LIB) -o $(OUT)
+      g++ $(_INC) main.cpp $(EZ_LIB) -o $(OUT)
       @echo "Compiled successfully! Now running..."
       ./$(OUT)
-        
-    #This command copys all the neccecary dlls into your output directory
-    #Type "make dll" to run this command
-    dll:
-      @echo "copying needed dll files into /output..."
-      $(shell cp $(NODES_BIN)/* output)       
-      @echo "operation successful"  
-
-    #This command clears the output directory
-    #Type "make clear" to run this command
-    clear:
-      @echo "clearing dlls..."
-      @echo "clearing executable..."
-      $(shell rm output/*)
-      @echo "clearing successful!"
-    
+  
   ```
 
   You can copy this example into makefile into your project.
   Just make sure you are linking the path to your copy of this library correctly.
 
-  In your main.cpp file, use #include"path/to/Nodes/inc/Nodes.hpp" to include the necessary headers
+  In your main.cpp file, use #include"path/to//inc/.hpp" to include the necessary headers
   into your file.
 
-### MAIN NODES CLASS
+### MAIN  CLASS
 
-The Nodes::Main class has all the configuration you need, when you don't want to do it manually.
-Just create a class that inherits Nodes::Main and override its Events(), Render() and Update() (optionally the OnClick()) methods and add desired funtionality.
+The ::Main class has all the configuration you need, when you don't want to do it manually.
+Just create a class that inherits ::Main and override its Events(), Render() and Update() (optionally the OnClick()) methods and add desired funtionality.
 
 This library does not have its own event interface yet, so for event handling you just use the SDL2 syntax.
 
 Here is an example of a main.cpp file
 
 ```cpp
-  #include "path/to/Nodes/inc/Nodes.hpp"
+  #include "path/to/EZ++/inc/EZ++.hpp"
 
-  class Program : public Nodes::Main {
+  class Program : public ::Main {
   public:
     Program()
-    : Nodes::Main(new Nodes::Window("Example", 10, 10, 800, 800)) {}
+    : ::Main(new EZ::Window("Example", 10, 10, 800, 800)) {}
 
     void Events() override {
       switch(event.type) {
