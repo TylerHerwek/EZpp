@@ -79,7 +79,7 @@ Here is an example of a main.cpp file
 ```cpp
   #include "path/to/EZ++/inc/EZ++.hpp"
 
-  class Program : public ::Main {
+  class Program : public EZ::Main {
   public:
     Program()
     : EZ::Main(new EZ::Window("Example", 10, 10, 800, 800)) {}
