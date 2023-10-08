@@ -1,4 +1,5 @@
 #include "ColorRect.hpp"
+#include <cstdio>
 using namespace EZ;
 
 // LIFETIME
@@ -21,6 +22,7 @@ ColorRect::ColorRect(const Rect& body, const EZ::Color& color)
 ColorRect::ColorRect(const ColorRect& other)
     : Rect(other.Pos, other.Size)
     , Thickness(other.Thickness)
+    , Mode(other.Mode)
     , _color(new EZ::Color(*other._color))
 {
 }
@@ -50,12 +52,16 @@ void ColorRect::Render() const
     }
 
     window->SetColor(_color->R, _color->G, _color->B, _color->A);
+
     switch (Mode) {
     case COLORRECT::OUTLINE:
         window->DrawRectOutline({X, Y, W, Y}, Thickness);
         break;
     case COLORRECT::FILL:
         window->DrawRect({X, Y, W, H});
+        break;
+    default:
+        perror("wrong mode!: " << (int)Mode);
         break;
     }
 }

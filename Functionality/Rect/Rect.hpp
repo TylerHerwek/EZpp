@@ -1,5 +1,6 @@
 #pragma once
 #include "../Point/Point.hpp"
+#include "../SDL/SDL.hpp"
 
 namespace EZ {
 // constains to Points Pos and Size
@@ -11,6 +12,8 @@ public:
 
     bool Collides(const Rect& other) const;
     bool Collides(const Point& other) const;
+
+    const SDL_Rect* const ToSDLStd() const;
 
     union {
         Point Pos;

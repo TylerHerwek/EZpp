@@ -20,6 +20,10 @@ Rect::Rect(const Point pos, const Point size)
 {
 }
 
+const SDL_Rect* const Rect::ToSDLStd() const {
+    return (SDL_Rect*)this;
+}
+
 bool Rect::Collides(const Rect& other) const
 {
     if (X + W >= other.X && X <= other.X + other.W && Y + H >= other.Y && Y <= other.Y + other.H) {

@@ -1,6 +1,5 @@
 #pragma once
 #include "../Rect/Rect.hpp"
-#include "../SDL/SDL.hpp"
 
 namespace EZ {
 class Sprite;

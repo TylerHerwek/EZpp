@@ -42,8 +42,7 @@ void Window::SetColor(int r, int g, int b, int a)
 
 void Window::DrawRect(const Rect& r)
 {
-    const SDL_Rect rect = { r.X, r.Y, r.W, r.H };
-    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderFillRect(renderer, r.ToSDLStd());
 }
 
 void Window::DrawRectOutline(const Rect& r, int t)
