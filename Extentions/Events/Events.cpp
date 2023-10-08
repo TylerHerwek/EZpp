@@ -72,7 +72,7 @@ MouseTracker::MouseTracker(const SDL_Event* event)
 
 MouseTracker::~MouseTracker() { delete mouse; }
 
-void MouseTracker::MouseTrackerUpdate() { SDL_GetMouseState(&mouse->x, &mouse->y); }
+void MouseTracker::MouseTrackerUpdate() { SDL_GetMouseState(&mouse->X, &mouse->Y); }
 
 void MouseTracker::MouseTrackerCheckForClick()
 {

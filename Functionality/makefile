@@ -7,14 +7,15 @@ all:
 	$(MAKE) build/SDL.o
 	ar rcs $(NAME) build/*.o
 
-
-COMP := g++ -c
-
 build/Point.o: Point/Point.cpp
-	$(COMP) $< -o $@
+	g++ -c $< -o $@
 build/Rect.o: Rect/Rect.cpp
-	$(COMP) $< -o $@
+	g++ -c $< -o $@
 build/Window.o: Window/Window.cpp
-	$(COMP) $< -o $@
+	g++ -c $< -o $@
 build/SDL.o: SDL/SDL.hpp
-	g++ -c $(INC) $< $(LIB) -o $@
+	g++ -c $< -o $@
+
+clear:
+	rm -f build/*.o
+	rm -f $(NAME)

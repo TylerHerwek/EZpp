@@ -1,6 +1,5 @@
 #pragma once
-#include "../../Functionality/Rect/Rect.hpp"
-#include "../Window/Window.hpp"
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
 

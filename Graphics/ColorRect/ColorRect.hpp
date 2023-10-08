@@ -1,7 +1,6 @@
 #pragma once
 #include "../Color/Color.hpp"
-#include "../../Functionality/Rect/Rect.hpp"
-#include "../Window/Window.hpp"
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
 enum class COLORRECT { FILL, OUTLINE };

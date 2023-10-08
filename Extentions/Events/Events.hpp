@@ -1,8 +1,5 @@
 #pragma once
-#include "../../src/Point/Point.hpp"
-#include "../../src/SDL/SDL.hpp"
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_mouse.h>
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ::Events {
 class WASD {

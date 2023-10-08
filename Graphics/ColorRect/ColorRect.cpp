@@ -52,10 +52,10 @@ void ColorRect::Render() const
     window->SetColor(_color->R, _color->G, _color->B, _color->A);
     switch (Mode) {
     case COLORRECT::OUTLINE:
-        window->DrawRectOutline(X, Y, W, Y, Thickness);
+        window->DrawRectOutline({X, Y, W, Y}, Thickness);
         break;
     case COLORRECT::FILL:
-        window->DrawRect(X, Y, W, H);
+        window->DrawRect({X, Y, W, H});
         break;
     }
 }

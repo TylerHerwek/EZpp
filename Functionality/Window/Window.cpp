@@ -1,14 +1,14 @@
 #include "Window.hpp"
 using namespace EZ;
 
-Window::Window(const char* name, int x, int y, int w, int h)
+Window::Window(const char* name, const Rect& bd)
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         perror("Could not initalze SDL: " << SDL_GetError());
         return;
     }
 
-    window = SDL_CreateWindow(name, x, y, w, h, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(name, bd.X, bd.Y, bd.W, bd.H, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         perror("Could not initalze Window: " << SDL_GetError());
         SDL_Quit();
@@ -40,24 +40,24 @@ void Window::SetColor(int r, int g, int b, int a)
     SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
 
-void Window::DrawRect(int x, int y, int w, int h)
+void Window::DrawRect(const Rect& r)
 {
-    const SDL_Rect rect = { x, y, w, h };
+    const SDL_Rect rect = { r.X, r.Y, r.W, r.H };
     SDL_RenderFillRect(renderer, &rect);
 }
 
-void Window::DrawRectOutline(int x, int y, int w, int h, int t)
+void Window::DrawRectOutline(const Rect& r, int t)
 {
     for (int i = 0; i < t; i++) {
-        const SDL_Rect rct = { x + i, y + i, w - (2 * i), h - (2 * i) };
+        const SDL_Rect rct = { r.X + i, r.Y + i, r.W - (2 * i), r.H - (2 * i) };
         SDL_RenderDrawRect(renderer, &rct);
     }
 }
 
-void Window::DrawLine(const Point& a, const Point& b, const int thick)
+void Window::DrawLine(const Point a, const Point b, const int thick)
 {
     for (int i = 0; i < thick; i++) {
-        SDL_RenderDrawLine(renderer, a.x, a.y + i, b.x, b.y + i);
+        SDL_RenderDrawLine(renderer, a.X, a.Y + i, b.X, b.Y + i);
     }
 }
 

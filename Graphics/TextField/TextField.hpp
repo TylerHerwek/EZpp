@@ -1,7 +1,7 @@
 #pragma once
 #include "../ColorRect/ColorRect.hpp"
 #include "../Sprite/Sprite.hpp"
-#include "../Window/Window.hpp"
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
 class TextField : public CanvasItem {

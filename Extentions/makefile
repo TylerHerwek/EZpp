@@ -1,21 +1,15 @@
-LIB_OUT := ../lib/libEZ++_Ext.a
-PCH_INC := -include ../src/SDL/SDL.hpp
-
-INC := -L"../lib" -I"../inc" 
-LIB := -lEZ++
-
-COMP := g++ -c $(PCH_INC) $(INC)
+NAME := ../Library/libEZ++Ext.a
 
 all:
 	$(MAKE) build/Main.o 
 	$(MAKE) build/Events.o 
-	ar rcs $(LIB_OUT) build/*.o
+	ar rcs $(NAME) build/*.o
 
 build/Main.o: Main/Main.cpp
-	$(COMP) $< $(LIB) -o $@
+	g++ -c $< -o $@
 build/Events.o: Events/Events.cpp
-	$(COMP) $< $(LIB) -o $@
+	g++ -c $< -o $@
 
 clear:
-	rm build/*
-	rm $(LIB_OUT)
+	rm -f build/*
+	rm -f $(NAME)

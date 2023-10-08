@@ -1,5 +1,5 @@
 #pragma once
-#include "../SDL/SDL.hpp"
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
 enum class COLOR {

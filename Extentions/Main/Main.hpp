@@ -1,5 +1,5 @@
 #pragma once
-#include "../../src/Window/Window.hpp"
+#include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
 class Main {
