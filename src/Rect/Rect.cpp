@@ -3,8 +3,8 @@
 using namespace EZ;
 
 Rect::Rect()
-    : _position(new Point)
-    , _size(new Point)
+    : Position(new Point)
+    , Size(new Point)
 {
 }
 

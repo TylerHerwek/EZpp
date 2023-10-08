@@ -1,8 +1,3 @@
-/src/main.cpp
-/src/output
-/src/img
-/src/font
-
 *.o
 *.exe
 *.gch
