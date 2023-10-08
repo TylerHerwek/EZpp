@@ -2,7 +2,7 @@ LIB_OUT := ../lib/libEZ++_Ext.a
 PCH_INC := -include ../src/SDL/SDL.hpp
 
 INC := -L"../lib" -I"../inc" 
-LIB := -lEZ++ -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+LIB := -lEZ++
 
 COMP := g++ -c $(PCH_INC) $(INC)
 

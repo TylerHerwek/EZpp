@@ -8,6 +8,7 @@ PCH := SDL/SDL.hpp.gch
 LIB_OUT := ../lib/libEZ++.a
 
 COMP := g++ -c -include SDL/SDL.hpp $(INC)
+SDL_LOC := /usr/lib/x86_64-linux-gnu
 
 .PHONY: all rebuild_all
 
@@ -21,7 +22,8 @@ all:
 	$(MAKE) build/TextField.o
 	$(MAKE) build/Window.o
 	$(MAKE) build/SDL.o
-	ar rcs $(LIB_OUT) build/*.o
+	
+	ar rcs $(LIB_OUT) $(SDL_LOC)/libSDL2.a $(SDL_LOC)/libSDL2main.a $(SDL_LOC)/libSDL2_image.a $(SDL_LOC)/libSDL2_ttf.a build/*.o
 
 build/Button.o: Button/Button.cpp
 	$(COMP) $< $(LIB) -o $@
@@ -42,6 +44,8 @@ build/Window.o: Window/Window.cpp
 build/SDL.o: SDL/SDL.hpp
 	g++ -c $(INC) $< $(LIB) -o $@
 
+sdl:
+	
 
 pch: $(PCH)
 $(PCH): SDL/SDL.hpp
@@ -50,6 +54,7 @@ $(PCH): SDL/SDL.hpp
 	g++ -x c++-header $< -o $@ 
 
 clear:
-	rm -f build/*
+	rm -f build/*.o
+	rm -f build/SDL/*
 	rm -f SDL/*.gch
 	rm -f $(LIB_OUT)
