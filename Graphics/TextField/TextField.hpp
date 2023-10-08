@@ -14,8 +14,8 @@ public:
 
     void SetFont(const string& path, int size);
 
-    void Position(const Point& pos);
-    Point Position() const;
+    void Pos(const Point pos);
+    Point Pos() const;
 
     void Text(const string& text);
     const string* const Text() const;

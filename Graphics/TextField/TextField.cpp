@@ -127,17 +127,17 @@ const ::Color* const TextField::Color() const
 }
 
 // Position getters and setters
-void TextField::Position(const Point& pos)
+void TextField::Pos(const Point pos)
 {
-    _dest->x = pos.x;
-    _dest->y = pos.y;
+    _dest->x = pos.X;
+    _dest->y = pos.Y;
 
     if (!_background)
         return;
-    _background->Position({ _dest->x - 4, _dest->y - 4 });
+    _background->Pos = Point(_dest->x - 4, _dest->y - 4);
 }
 
-Point TextField::Position() const
+Point TextField::Pos() const
 {
     return { _dest->x, _dest->y };
 }

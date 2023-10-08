@@ -1,12 +1,12 @@
 #pragma once
 #include "../Color/Color.hpp"
-#include "../Rect/Rect.hpp"
+#include "../../Functionality/Rect/Rect.hpp"
 #include "../Window/Window.hpp"
 
 namespace EZ {
 enum class COLORRECT { FILL, OUTLINE };
 
-class ColorRect : public CanvasItem {
+class ColorRect : public CanvasItem, public Rect {
 public:
     ColorRect();
     ColorRect(const Rect& body, const EZ::Color& color);
@@ -18,12 +18,6 @@ public:
     COLORRECT Mode;
     int Thickness;
 
-    const Point* const Position() const;
-    void Position(const Point& pos);
-
-    const Point* const Size() const;
-    void Size(const Point& size);
-
     bool Collides(const ColorRect& other) const;
     bool Collides(const Rect& other) const;
 
@@ -31,7 +25,6 @@ public:
     void Render() const;
 
 protected:
-    Rect* _body;
     EZ::Color* _color;
 };
 }

@@ -12,11 +12,11 @@ public:
     void SetHover(const char* URL);
     void SetNormal(const char* URL);
 
-    void Position(const Point& pos);
-    const Point* const Position() const;
+    void Pos(const Point pos);
+    Point Pos() const;
 
-    void Size(const Point& size);
-    const Point* const Size() const;
+    void Size(const Point size);
+    Point Size() const;
 
     void SetBackground(const bool on);
 

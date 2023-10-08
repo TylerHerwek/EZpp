@@ -1,5 +1,5 @@
 #pragma once
-#include "../Rect/Rect.hpp"
+#include "../../Functionality/Rect/Rect.hpp"
 #include "../Window/Window.hpp"
 
 namespace EZ {
@@ -11,7 +11,7 @@ enum class SPRITE { SCALE,
 class Sprite : public CanvasItem {
 public:
     Sprite();
-    Sprite(const Point& pos, const char* imageURL);
+    Sprite(const Point pos, const char* imageURL);
     Sprite(const Sprite& other);
     ~Sprite();
 
@@ -23,10 +23,10 @@ public:
     void SetMode(const SPRITE mode);
     void SetScale(const float x, const float y);
 
-    void Position(const Point& pos);
-    Point Position() const;
+    void Pos(const Point pos);
+    Point Pos() const;
 
-    void Size(const Point& size);
+    void Size(const Point size);
     Point Size() const;
 
     friend TextField;

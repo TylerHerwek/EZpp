@@ -15,8 +15,8 @@ Button::Button(Point* mouse)
 Button::Button(Point* mouse, const Rect& b)
     : Button(mouse)
 {
-    Position(*b.Position());
-    Size(*b.Size());
+    Pos(b.Pos);
+    Size(b.Size);
 }
 
 Button::~Button()
@@ -38,18 +38,18 @@ void Button::SetHover(const char* URL)
 {
     delete _hoverTex;
 
-    _hoverTex = new Sprite(*_body->Position(), URL);
+    _hoverTex = new Sprite(_body->Pos, URL);
     _hoverTex->SetMode(SPRITE::FITBOX);
-    _hoverTex->Size(*_body->Size());
+    _hoverTex->Size(_body->Size);
 }
 
 void Button::SetNormal(const char* URL)
 {
     delete _normalTex;
 
-    _normalTex = new Sprite(*_body->Position(), URL);
+    _normalTex = new Sprite(_body->Pos, URL);
     _normalTex->SetMode(SPRITE::FITBOX);
-    _normalTex->Size(*_body->Size());
+    _normalTex->Size(_body->Size);
 }
 
 void Button::SetBackground(const bool on)
@@ -61,37 +61,38 @@ void Button::SetBackground(const bool on)
         _background = new ColorRect(*_body, { 100, 100, 100, 100 });
 }
 
-void Button::Position(const Point& pos)
+void Button::Pos(const Point pos)
 {
-    _body->Position(pos);
-    if (_normalTex)
-        _normalTex->Position(pos);
-    if (_hoverTex)
-        _hoverTex->Position(pos);
+    _body->Pos = pos;
     if (_background)
-        _background->Position(pos);
-}
-const Point* const
-Button::Position() const
-{
-    return _body->Position();
+        _background->Pos = pos;
+
+    if (_normalTex)
+        _normalTex->Pos(pos);
+    if (_hoverTex)
+        _hoverTex->Pos(pos);
 }
 
-void Button::Size(const Point& size)
+Point Button::Pos() const
 {
-    _body->Size(size);
+    return _body->Pos;
+}
+
+void Button::Size(const Point size)
+{
+    _body->Size = size;
+    if (_background)
+        _background->Size = size;
+
     if (_normalTex)
         _normalTex->Size(size);
     if (_hoverTex)
         _hoverTex->Size(size);
-    if (_background)
-        _background->Size(size);
 }
 
-const Point* const
-Button::Size() const
+Point Button::Size() const
 {
-    return _body->Size();
+    return _body->Size;
 }
 
 void Button::Update()

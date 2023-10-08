@@ -1,7 +1,4 @@
 #include "Window.hpp"
-#include <SDL2/SDL_blendmode.h>
-#include <SDL2/SDL_render.h>
-#include <cstdio>
 using namespace EZ;
 
 Window::Window(const char* name, int x, int y, int w, int h)

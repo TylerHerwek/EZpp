@@ -4,27 +4,23 @@ using namespace EZ;
 Sprite::Sprite()
     : _tex(nullptr)
     , _url(nullptr)
-    ,
-
-    _dest(new SDL_Rect)
+    , _dest(new SDL_Rect)
 {
     *_dest = { 0, 0, 0, 0 };
     SetMode(SPRITE::SCALE);
 }
 
-Sprite::Sprite(const Point& pos, const char* imageURL)
+Sprite::Sprite(const Point pos, const char* imageURL)
     : Sprite()
 {
-    Position(pos);
+    Pos(pos);
     SetTexture(imageURL);
 }
 
 Sprite::Sprite(const Sprite& other)
     : _tex(nullptr)
     , _url(other._url)
-    ,
-
-    _dest(new SDL_Rect)
+    , _dest(new SDL_Rect)
 {
     *_dest = *other._dest;
     SetTexture(_url);
@@ -107,17 +103,17 @@ void Sprite::SetMode(const SPRITE mode)
     }
 }
 
-void Sprite::Position(const Point& pos)
+void Sprite::Pos(const Point pos)
 {
-    _dest->x = pos.x;
-    _dest->y = pos.y;
+    _dest->x = pos.X;
+    _dest->y = pos.Y;
 }
-Point Sprite::Position() const
+Point Sprite::Pos() const
 {
     return { _dest->x, _dest->y };
 }
 
-void Sprite::Size(const Point& size)
+void Sprite::Size(const Point size)
 {
     if (_mode == SPRITE::SCALE) {
         perror("This object is in scale mode, you cannot change its Size from the 'Sprite::Size' method!");
@@ -125,8 +121,8 @@ void Sprite::Size(const Point& size)
         perror("Or set it to FITBOX mode with 'Sprite::SetMode(SPRITE::FITBOX)'");
         return;
     }
-    _dest->w = size.x;
-    _dest->h = size.y;
+    _dest->w = size.X;
+    _dest->h = size.Y;
 }
 Point Sprite::Size() const
 {

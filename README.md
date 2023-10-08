@@ -1,5 +1,8 @@
 ## README
 
+# WARNING
+Library currenty under construction and not working!
+
 ### INTRODUCTION
 
 This is a lightweight beginner friendly C++ graphics library that is easy and fun to use 
