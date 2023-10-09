@@ -15,12 +15,19 @@ Rect::Rect(int x, int y, int w, int h)
 }
 
 Rect::Rect(const Point pos, const Point size)
-    : Pos({ pos.X, pos.Y })
-    , Size({ pos.X, pos.Y })
+    : Pos(pos)
+    , Size(size)
 {
 }
 
-const SDL_Rect* const Rect::ToSDLStd() const {
+Rect::Rect(const Rect& other)
+    : Pos(other.Pos)
+    , Size(other.Size)
+{
+}
+
+const SDL_Rect* const Rect::ToSDLStd() const
+{
     return (SDL_Rect*)this;
 }
 

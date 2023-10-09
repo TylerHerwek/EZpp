@@ -9,6 +9,7 @@ public:
     Rect();
     Rect(int x, int y, int w, int h);
     Rect(const Point pos, const Point size);
+    Rect(const Rect& other);
 
     bool Collides(const Rect& other) const;
     bool Collides(const Point& other) const;

@@ -55,10 +55,10 @@ void ColorRect::Render() const
 
     switch (Mode) {
     case COLORRECT::OUTLINE:
-        window->DrawRectOutline({X, Y, W, Y}, Thickness);
+        window->DrawRectOutline({X, Y, W, H}, Thickness);
         break;
     case COLORRECT::FILL:
-        window->DrawRect({X, Y, W, H});
+        window->DrawRect({Pos, Size});
         break;
     default:
         perror("wrong mode!: " << (int)Mode);

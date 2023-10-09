@@ -1,4 +1,5 @@
 #include "Window.hpp"
+#include <SDL2/SDL_rect.h>
 using namespace EZ;
 
 Window::Window(const char* name, const Rect& bd)
@@ -48,7 +49,12 @@ void Window::DrawRect(const Rect& r)
 void Window::DrawRectOutline(const Rect& r, int t)
 {
     for (int i = 0; i < t; i++) {
-        const SDL_Rect rct = { r.X + i, r.Y + i, r.W - (2 * i), r.H - (2 * i) };
+        const SDL_Rect rct = {
+            r.X + i,
+            r.Y + i,
+            r.W - (2 * i),
+            r.H - (2 * i)
+        };
         SDL_RenderDrawRect(renderer, &rct);
     }
 }
