@@ -112,10 +112,6 @@ Here is an example of a main.cpp file:
     void Render() override {
       //Renders every frame
     }
-
-    void OnClick() override {
-      print("click!");
-    }
   };
 
 
