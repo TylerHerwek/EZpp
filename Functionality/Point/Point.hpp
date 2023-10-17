@@ -20,6 +20,8 @@ public:
     void operator-=(const Point& other);
     void operator*=(const Point& other);
     void operator/=(const Point& other);
+
+    bool operator!=(const Point& other) const;
 };
 
 }

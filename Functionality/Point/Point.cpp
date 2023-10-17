@@ -56,3 +56,9 @@ void Point::operator/=(const Point& other)
     X = (int)((float)X / other.X);
     Y = (int)((float)Y / other.Y);
 }
+
+bool Point::operator!=(const Point& other) const
+{
+    if(X == other.X && Y == other.Y) return false;
+    return true;
+}
