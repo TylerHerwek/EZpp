@@ -1,24 +1,25 @@
-NAME := ../Library/libEZ++Graph.a
+LIB := ../Library/libEZ++Graph.a
+NAME := Graphics
+BUILD := ../build/
+OUT := $(BUILD)$(NAME)
 
-all:
-	$(MAKE) build/Button.o
-	$(MAKE) build/Color.o
-	$(MAKE) build/ColorRect.o
-	$(MAKE) build/Sprite.o
-	$(MAKE) build/TextField.o
-	ar rcs $(NAME) build/*.o
+OBJ := $(OUT)Button.o $(OUT)Color.o $(OUT)ColorRect.o $(OUT)Sprite.o $(OUT)TextField.o
 
-build/Button.o: Button/Button.cpp
-	g++ -c $< -o $@
-build/Color.o: Color/Color.cpp
-	g++ -c $< -o $@
-build/ColorRect.o: ColorRect/ColorRect.cpp
-	g++ -c $< -o $@
-build/Sprite.o: Sprite/Sprite.cpp
-	g++ -c $< -o $@
-build/TextField.o: TextField/TextField.cpp
-	g++ -c $< -o $@
-
+all: $(OBJ)
+	ar rcs $(LIB) $(OBJ)
 clear:
-	rm -f build/*.o
-	rm -f $(NAME)
+	rm -f $(LIB)
+	rm -f $(OBJ)
+
+$(OUT)Button.o: Button/Button.cpp
+	g++ -c $< -o $@
+$(OUT)Color.o: Color/Color.cpp
+	g++ -c $< -o $@
+$(OUT)ColorRect.o: ColorRect/ColorRect.cpp
+	g++ -c $< -o $@
+$(OUT)Sprite.o: Sprite/Sprite.cpp
+	g++ -c $< -o $@
+$(OUT)TextField.o: TextField/TextField.cpp
+	g++ -c $< -o $@
+
+

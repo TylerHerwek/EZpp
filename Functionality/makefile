@@ -1,21 +1,23 @@
-NAME := ../Library/libEZ++Func.a
+LIB := ../Library/libEZ++Func.a
+NAME := Functionality
+BUILD := ../build/
+OUT := $(BUILD)$(NAME)
 
-all:
-	$(MAKE) build/Point.o
-	$(MAKE) build/Rect.o
-	$(MAKE) build/Window.o
-	$(MAKE) build/SDL.o
-	ar rcs $(NAME) build/*.o
+OBJ := $(OUT)Point.o $(OUT)Rect.o $(OUT)Window.o $(OUT)SDL.o
 
-build/Point.o: Point/Point.cpp
-	g++ -c $< -o $@
-build/Rect.o: Rect/Rect.cpp
-	g++ -c $< -o $@
-build/Window.o: Window/Window.cpp
-	g++ -c $< -o $@
-build/SDL.o: SDL/SDL.hpp
-	g++ -c $< -o $@
-
+all: $(OBJ)
+	ar rcs $(LIB) $(OBJ) 
 clear:
-	rm -f build/*.o
-	rm -f $(NAME)
+	rm -f $(OBJ)
+	rm -f $(LIB)
+
+$(OUT)Point.o: Point/Point.cpp
+	g++ -c $< -o $@
+$(OUT)Rect.o: Rect/Rect.cpp
+	g++ -c $< -o $@
+$(OUT)Window.o: Window/Window.cpp
+	g++ -c $< -o $@
+$(OUT)SDL.o: SDL/SDL.hpp
+	g++ -c $< -o $@
+
+
