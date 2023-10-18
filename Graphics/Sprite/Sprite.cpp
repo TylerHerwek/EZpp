@@ -87,20 +87,6 @@ void Sprite::SetScale(const float x, const float y)
 void Sprite::SetMode(const SPRITE mode)
 {
     _mode = mode;
-
-    switch (mode) {
-    case EZ::SPRITE::SCALE:
-        print("This object is now in Scale mode, use Sprite::SetScale to change it's size!");
-        break;
-
-    case EZ::SPRITE::FITBOX:
-        print("This object is now in Fitbox mode, use Sprite::Size(set) to change it's size!");
-        break;
-
-    default:
-        print("You somehow fat in a wrong value into Sprite::SetMode");
-        break;
-    }
 }
 
 void Sprite::Pos(const Point pos)
