@@ -1,6 +1,8 @@
 #pragma once
 
 namespace EZ {
+class Point2;
+
 // Point class contains 2 intagers X, Y
 //---Able to do mathematical operations
 class Point {
@@ -10,6 +12,8 @@ public:
     Point();
     Point(int x, int y);
     Point(int p);
+
+    Point2 ToFloat() const;
 
     Point operator+(const Point& other) const;
     Point operator-(const Point& other) const;

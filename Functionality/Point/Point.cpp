@@ -19,6 +19,11 @@ Point::Point(int p)
     Y = p;
 }
 
+Point2 Point::ToFloat() const
+{
+    return {X, Y};
+}
+
 Point Point::operator+(const Point& other) const
 {
     return { X + other.X, Y + other.Y };
