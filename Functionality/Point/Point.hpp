@@ -24,4 +24,25 @@ public:
     bool operator!=(const Point& other) const;
 };
 
-}
+class Point2 {
+public:
+    float X, Y;
+
+    Point2();
+    Point2(float x, float y);
+    Point2(float p);
+
+    Point2 operator+(const Point2& other) const;
+    Point2 operator-(const Point2& other) const;
+    Point2 operator*(const Point2& other) const;
+    Point2 operator/(const Point2& other) const;
+
+    void operator+=(const Point2& other);
+    void operator-=(const Point2& other);
+    void operator*=(const Point2& other);
+    void operator/=(const Point2& other);
+
+    bool operator!=(const Point2& other) const;
+};
+
+};
