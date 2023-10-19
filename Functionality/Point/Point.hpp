@@ -13,7 +13,7 @@ public:
     Point(int x, int y);
     Point(int p);
 
-    Point2 ToFloat() const;
+    operator Point2() const;
 
     Point operator+(const Point& other) const;
     Point operator-(const Point& other) const;
@@ -35,6 +35,8 @@ public:
     Point2();
     Point2(float x, float y);
     Point2(float p);
+
+    operator Point() const;
 
     Point2 operator+(const Point2& other) const;
     Point2 operator-(const Point2& other) const;

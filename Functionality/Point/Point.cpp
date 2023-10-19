@@ -19,9 +19,8 @@ Point::Point(int p)
     Y = p;
 }
 
-Point2 Point::ToFloat() const
-{
-    return {X, Y};
+Point::operator Point2() const {
+    return Point2(X, Y);
 }
 
 Point Point::operator+(const Point& other) const
@@ -83,6 +82,10 @@ Point2::Point2(float x, float y) {
 Point2::Point2(float p) {
     X = p;
     Y = p;
+}
+
+Point2::operator Point() const {
+    return Point(X, Y);
 }
 
 Point2 Point2::operator+(const Point2& other) const {
