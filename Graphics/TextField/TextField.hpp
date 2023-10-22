@@ -26,6 +26,7 @@ public:
     void SetBackGround(bool on);
 
     void Render() const;
+	int FontSize() const;
 
 private:
     EZ::Color* _color;

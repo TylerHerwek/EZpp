@@ -167,3 +167,5 @@ void TextField::Render() const
 
     SDL_RenderCopy(window->renderer, _texture, NULL, _dest);
 }
+
+int TextField::FontSize() const { return _fontSize; }
