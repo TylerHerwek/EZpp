@@ -18,7 +18,7 @@ public:
     Point Pos() const;
 
     void Text(const string& text);
-    const string* const Text() const;
+    const char* Text() const;
 
     void Color(const EZ::Color& other);
     const EZ::Color* const Color() const;

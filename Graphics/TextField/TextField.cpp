@@ -109,9 +109,9 @@ void TextField::Text(const string& text)
     SDL_FreeSurface(surf);
 }
 
-const string* const TextField::Text() const
+const char* TextField::Text() const
 {
-    return _text;
+    return _text->c_str();
 }
 
 void TextField::Color(const EZ::Color& other)
