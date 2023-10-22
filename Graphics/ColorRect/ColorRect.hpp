@@ -13,6 +13,7 @@ public:
 
     ~ColorRect();
     unique_ptr<ColorRect> Duplicate() const;
+	bool Visible;
 
     COLORRECT Mode;
     int Thickness;

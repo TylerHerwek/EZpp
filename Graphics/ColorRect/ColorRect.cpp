@@ -8,6 +8,7 @@ ColorRect::ColorRect()
     , Thickness(1)
     , Mode(COLORRECT::FILL)
     , _color(new EZ::Color)
+	, Visible(true)
 {
 }
 
@@ -16,6 +17,7 @@ ColorRect::ColorRect(const Rect& body, const EZ::Color& color)
     , Thickness(1)
     , Mode(COLORRECT::FILL)
     , _color(new EZ::Color(color))
+	, Visible(true)
 {
 }
 
@@ -24,6 +26,7 @@ ColorRect::ColorRect(const ColorRect& other)
     , Thickness(other.Thickness)
     , Mode(other.Mode)
     , _color(new EZ::Color(*other._color))
+	, Visible(other.Visible)
 {
 }
 
@@ -45,6 +48,7 @@ EZ::Color* const ColorRect::Color() const
 
 void ColorRect::Render() const
 {
+	if(!Visible) return;
     if (!window) {
         perror("The renderer Window is not initialized!");
         perror("Set the static CanvasItem::window field to a Window pointer to fix this issue.");

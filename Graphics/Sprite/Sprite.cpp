@@ -5,6 +5,7 @@ Sprite::Sprite()
     : _tex(nullptr)
     , _url(nullptr)
     , _dest(new SDL_Rect)
+	, Visible(true)
 {
     *_dest = { 0, 0, 0, 0 };
     SetMode(SPRITE::SCALE);
@@ -21,6 +22,7 @@ Sprite::Sprite(const Sprite& other)
     : _tex(nullptr)
     , _url(other._url)
     , _dest(new SDL_Rect)
+	, Visible(other.Visible)
 {
     *_dest = *other._dest;
     SetTexture(_url);
@@ -43,6 +45,7 @@ CanvasItem* Sprite::Duplicate() const
 
 void Sprite::Render() const
 {
+	if(!Visible) return;
     if (!_tex) {
         print("Cannot Render Sprite. Its not initialzed.");
         print("Try using Sprite::SetTexture");

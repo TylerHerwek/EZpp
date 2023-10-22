@@ -15,6 +15,7 @@ public:
     ~Sprite();
 
     CanvasItem* Duplicate() const;
+	bool Visible;
 
     void SetTexture(const char* imageURL);
     void Render() const;
