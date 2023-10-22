@@ -169,3 +169,5 @@ void TextField::Render() const
 }
 
 int TextField::FontSize() const { return _fontSize; }
+
+const Rect* const TextField::Destination() const { return (Rect*)_dest; }

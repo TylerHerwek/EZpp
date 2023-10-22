@@ -28,6 +28,8 @@ public:
     void Render() const;
 	int FontSize() const;
 
+	const Rect* const Destination() const;
+
 private:
     EZ::Color* _color;
     string* _text;
