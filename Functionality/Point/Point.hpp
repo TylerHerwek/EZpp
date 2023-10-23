@@ -26,6 +26,7 @@ public:
     void operator/=(const Point& other);
 
     bool operator!=(const Point& other) const;
+	bool operator==(const Point& other) const;
 };
 
 class Point2 {
@@ -49,6 +50,7 @@ public:
     void operator/=(const Point2& other);
 
     bool operator!=(const Point2& other) const;
+	bool operator==(const Point& other) const
 };
 
 };

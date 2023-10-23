@@ -67,6 +67,10 @@ bool Point::operator!=(const Point& other) const
     return true;
 }
 
+bool Point::operator==(const Point& other) const {
+	return X == other.X && Y == other.Y;
+}
+
 //Point2
 
 Point2::Point2() {
@@ -126,4 +130,8 @@ void Point2::operator/=(const Point2& other) {
 
 bool Point2::operator!=(const Point2& other) const {
     return (X != other.X) || (Y != other.Y);
+}
+
+bool Point2::operator==(const Point& other) const {
+	return X == other.X && Y == other.Y;
 }
