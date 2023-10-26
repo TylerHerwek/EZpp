@@ -1,4 +1,5 @@
 #include "Point.hpp"
+#include "math.h"
 using namespace EZ;
 
 Point::Point()
@@ -37,7 +38,7 @@ Point Point::operator*(const Point& other) const
 }
 Point Point::operator/(const Point& other) const
 {
-    return { (int)((float)X / (float)other.X), (int)((float)Y / (float)other.Y) };
+    return { (int)floorf((float)X / (float)other.X), (int)floorf((float)Y / (float)other.Y) };
 }
 
 void Point::operator+=(const Point& other)
@@ -57,8 +58,8 @@ void Point::operator*=(const Point& other)
 }
 void Point::operator/=(const Point& other)
 {
-    X = (int)((float)X / other.X);
-    Y = (int)((float)Y / other.Y);
+    X = (int)floorf((float)X / other.X);
+    Y = (int)floorf((float)Y / other.Y);
 }
 
 bool Point::operator!=(const Point& other) const

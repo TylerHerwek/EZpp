@@ -1,4 +1,5 @@
 #include "Sprite.hpp"
+#include <cstdio>
 using namespace EZ;
 
 Sprite::Sprite()
@@ -62,7 +63,7 @@ void Sprite::SetTexture(const char* imgURL)
     _tex = IMG_LoadTexture(window->renderer, imgURL);
 
     if (!_tex) {
-        print("Could not load texture " << imgURL << " Error: " << SDL_GetError());
+        perror("Could not load texture " << imgURL << " Error: " << SDL_GetError());
         _tex = nullptr;
         return;
     }
