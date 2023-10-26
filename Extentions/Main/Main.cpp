@@ -57,7 +57,7 @@ void Main::_render()
 {
     mainWindow->Clear();
     Render();
-    mainWindow->SetColor(0, 0, 0, 255);
+    mainWindow->SetColor({0, 0, 0, 255});
     mainWindow->DrawRect({0, 0, 0, 0});
     mainWindow->Render();
 }
