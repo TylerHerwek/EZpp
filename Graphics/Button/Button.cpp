@@ -100,11 +100,11 @@ void Button::Update()
     if (!_hover && _body->Collides(*_mouse)) {
         _hover = true;
         if (_background)
-            _background->Color()->Set(200, 200, 200);
+            _background->Color.Set(200, 200, 200);
     } else if (_hover && !_body->Collides(*_mouse)) {
         _hover = false;
         if (_background)
-            _background->Color()->Set(100, 100, 100);
+            _background->Color.Set(100, 100, 100);
     }
 }
 

@@ -2,32 +2,34 @@
 #include "../../Include/EZ++Func.hpp"
 
 namespace EZ {
-class Main {
-public:
-    Main(EZ::Window* mainWindow);
-    virtual ~Main();
+	class Main {
+	public:
+		Main(EZ::Window* mainWindow);
+		virtual ~Main();
 
-    void StartLoop();
-    virtual void Update() = 0;
-    virtual void Render() = 0;
-    virtual void Events() = 0;
-    virtual void OnClick() { }
+		void StartLoop();
+		virtual void Update() = 0;
+		virtual void Render() = 0;
+		virtual void Events() = 0;
+		virtual void OnClick() { }
 
-    float FPS() const;
-    void FPS(const float fps);
+		void BackGroundColor(const EZ::Color color);
 
-protected:
-    EZ::Window* mainWindow;
+		float FPS() const;
+		void FPS(const float fps);
 
-    SDL_Event event;
-    bool running;
+	protected:
+		EZ::Window* mainWindow;
 
-private:
-    float _framerate;
+		SDL_Event event;
+		bool running;
 
-    void _loop();
-    void _update();
-    void _events();
-    void _render();
-};
+	private:
+		float _framerate;
+
+		void _loop();
+		void _update();
+		void _events();
+		void _render();
+	};
 }

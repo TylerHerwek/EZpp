@@ -1,34 +1,38 @@
 #pragma once
 #include "../Rect/Rect.hpp"
+#include "../Color/Color.hpp"
 
 namespace EZ {
-class Sprite;
-class TextField;
+	class Sprite;
+	class TextField;
 
-class Window final {
-public:
-    Window(const char* name, const Rect& body);
-    Window(const Window& other) = delete;
+	void Initialize();
+	Point FullScreen();
 
-    void SetColor(int r, int g, int b, int a);
+	class Window final {
+		public:
+			Window(const char* name, const Rect& body);
+			Window(const Window& other) = delete;
 
-    void DrawRect(const Rect& rect);
-    void DrawRectOutline(const Rect& rect, int t);
-    void DrawLine(const Point a, const Point b, const int thick);
+			void SetColor(const EZ::Color color);
 
-    void Clear();
-    void Render();
+			void DrawRect(const Rect& rect);
+			void DrawRectOutline(const Rect& rect, int t);
+			void DrawLine(const Point a, const Point b, const int thick);
 
-    friend Sprite;
-    friend TextField;
+			void Clear();
+			void Render();
 
-private:
-    SDL_Renderer* renderer;
-    SDL_Window* window;
-};
+			friend Sprite;
+			friend TextField;
 
-class CanvasItem {
-public:
-    static EZ::Window* window;
-};
+		private:
+			SDL_Renderer* renderer;
+			SDL_Window* window;
+	};
+
+	class CanvasItem {
+		public:
+			static EZ::Window* window;
+	};
 }

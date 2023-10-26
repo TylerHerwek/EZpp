@@ -3,7 +3,7 @@ NAME := Functionality
 BUILD := ../build/
 OUT := $(BUILD)$(NAME)
 
-OBJ := $(OUT)Point.o $(OUT)Rect.o $(OUT)Window.o $(OUT)SDL.o
+OBJ := $(OUT)Point.o $(OUT)Rect.o $(OUT)Window.o $(OUT)SDL.o $(OUT)Color.o
 
 all: $(OBJ)
 	ar rcs $(LIB) $(OBJ) 
@@ -18,6 +18,8 @@ $(OUT)Rect.o: Rect/Rect.cpp
 $(OUT)Window.o: Window/Window.cpp
 	g++ -c $< -o $@
 $(OUT)SDL.o: SDL/SDL.hpp
+	g++ -c $< -o $@
+$(OUT)Color.o: Color/Color.cpp
 	g++ -c $< -o $@
 
 

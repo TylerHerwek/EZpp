@@ -1,14 +1,8 @@
 #include "Window.hpp"
-#include <SDL2/SDL_rect.h>
 using namespace EZ;
 
 Window::Window(const char* name, const Rect& bd)
 {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        perror("Could not initalze SDL: " << SDL_GetError());
-        return;
-    }
-
     window = SDL_CreateWindow(name, bd.X, bd.Y, bd.W, bd.H, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         perror("Could not initalze Window: " << SDL_GetError());
@@ -33,12 +27,12 @@ Window::Window(const char* name, const Rect& bd)
         return;
     }
 
-    SetColor(255, 255, 255, 255);
+    SetColor({255, 255, 255, 255});
 }
 
-void Window::SetColor(int r, int g, int b, int a)
+void Window::SetColor(const EZ::Color col)
 {
-    SDL_SetRenderDrawColor(renderer, r, g, b, a);
+    SDL_SetRenderDrawColor(renderer, col.R, col.G, col.B, col.A);
 }
 
 void Window::DrawRect(const Rect& r)
@@ -74,6 +68,21 @@ void Window::Clear()
 void Window::Render()
 {
     SDL_RenderPresent(renderer);
+}
+
+Point EZ::FullScreen() {
+	SDL_DisplayMode dm;
+	if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
+		perror("FullScreen operation failed: " << SDL_GetError());
+		return {-1, -1};
+	}
+	return { dm.w, dm.h };
+}
+
+void EZ::Initialize() {
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        perror("Could not initalze SDL: " << SDL_GetError());
+    }
 }
 
 EZ::Window* EZ::CanvasItem::window = nullptr;
