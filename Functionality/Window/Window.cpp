@@ -2,6 +2,7 @@
 using namespace EZ;
 
 Window::Window(const char* name, const Rect& bd)
+	: Body(new Rect(bd))
 {
     window = SDL_CreateWindow(name, bd.X, bd.Y, bd.W, bd.H, SDL_WINDOW_SHOWN);
     if (window == NULL) {
@@ -28,6 +29,10 @@ Window::Window(const char* name, const Rect& bd)
     }
 
     SetColor({255, 255, 255, 255});
+}
+
+Window::~Window() {
+	delete Body;
 }
 
 void Window::SetColor(const EZ::Color col)

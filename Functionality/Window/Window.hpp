@@ -3,36 +3,39 @@
 #include "../Color/Color.hpp"
 
 namespace EZ {
-	class Sprite;
-	class TextField;
+class Sprite;
+class TextField;
 
-	void Initialize();
-	Point FullScreen();
+void Initialize();
+Point FullScreen();
+	
+class Window final {
+public:
+	Window(const char* name, const Rect& body);
+	Window(const Window& other) = delete;
+	~Window();
 
-	class Window final {
-		public:
-			Window(const char* name, const Rect& body);
-			Window(const Window& other) = delete;
+	void SetColor(const EZ::Color color);
+	void DrawRect(const Rect& rect);
+	
+	void DrawRectOutline(const Rect& rect, int t);
+	void DrawLine(const Point a, const Point b, const int thick);
 
-			void SetColor(const EZ::Color color);
+	const Rect* const Body;
+	
+	void Clear();
+	void Render();
 
-			void DrawRect(const Rect& rect);
-			void DrawRectOutline(const Rect& rect, int t);
-			void DrawLine(const Point a, const Point b, const int thick);
+	friend Sprite;
+	friend TextField;
 
-			void Clear();
-			void Render();
+private:
+	SDL_Renderer* renderer;
+	SDL_Window* window;
+};
 
-			friend Sprite;
-			friend TextField;
-
-		private:
-			SDL_Renderer* renderer;
-			SDL_Window* window;
-	};
-
-	class CanvasItem {
-		public:
-			static EZ::Window* window;
-	};
+class CanvasItem {
+public:
+	static EZ::Window* window;
+};
 }
