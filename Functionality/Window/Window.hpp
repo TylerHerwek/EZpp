@@ -22,7 +22,7 @@ public:
 	void DrawLine(const Point a, const Point b, const int thick);
 
 	const Rect* const Body;
-	
+
 	void Clear();
 	void Render();
 

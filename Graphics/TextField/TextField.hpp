@@ -12,7 +12,7 @@ public:
 
     unique_ptr<TextField> Duplicate() const;
 
-    void SetFont(const string& path, int size);
+    void SetFont(const string& path, const Uint16 size);
 
     void Pos(const Point pos);
     Point Pos() const;
@@ -23,7 +23,7 @@ public:
     void Color(const EZ::Color& other);
     const EZ::Color* const Color() const;
 
-    void SetBackGround(bool on);
+    void SetBackGround(const bool on);
 
     void Render() const;
 	int FontSize() const;
@@ -40,6 +40,6 @@ private:
 
     TTF_Font* _font;
     string* _fontPath;
-    int _fontSize;
+    Uint16 _fontSize;
 };
 }

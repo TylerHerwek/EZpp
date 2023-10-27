@@ -43,7 +43,7 @@ unique_ptr<TextField> TextField::Duplicate() const
     return std::make_unique<TextField>(*this);
 }
 
-void TextField::SetFont(const string& path, int size)
+void TextField::SetFont(const string& path, const Uint16 size)
 {
     // Load font
     TTF_CloseFont(_font);
@@ -66,10 +66,10 @@ void TextField::SetFont(const string& path, int size)
     _texture = SDL_CreateTextureFromSurface(window->renderer, surf);
     SDL_FreeSurface(surf);
 
-    if (_background != nullptr)
-        _background = new ColorRect(
-            { _dest->x - 4, _dest->y - 4, _dest->w + 8, _dest->h + 8 },
-            { 200, 200, 200, 50 });
+	if (_background) {
+		_background->Pos = {_dest->x - 4, _dest->y - 4};
+		_background->Size = {_dest->w + 8, _dest->h + 8};
+	}
 }
 
 // Text getters and setters
@@ -80,7 +80,8 @@ void TextField::Text(const string& text)
         print("Try TextField::SetFont");
         return;
     }
-    *this->_text = text;
+    if(*this->_text == text) return;
+	*this->_text = text;
 
     // Make Sprite
     SDL_Surface* surf = TTF_RenderText_Solid(_font, _text->c_str(), _color->FormatToSDLStd());
@@ -100,13 +101,12 @@ void TextField::Text(const string& text)
         _texture = nullptr;
         return;
     }
-
-    if (_background != nullptr)
-        _background = new ColorRect(
-            { _dest->x - 4, _dest->y - 4, _dest->w + 8, _dest->h + 8 },
-            { 200, 200, 200, 50 });
-
     SDL_FreeSurface(surf);
+
+    if (_background) {
+		_background->Pos = {_dest->x - 4, _dest->y - 4};
+		_background->Size = {_dest->w + 8, _dest->h + 8};
+	}
 }
 
 const char* TextField::Text() const
@@ -142,15 +142,15 @@ Point TextField::Pos() const
     return { _dest->x, _dest->y };
 }
 
-void TextField::SetBackGround(bool on)
+void TextField::SetBackGround(const bool on)
 {
     delete _background;
     _background = nullptr;
 
-    if (on)
-        _background = new ColorRect(
-            { _dest->x - 4, _dest->y - 4, _dest->w + 8, _dest->h + 8 },
-            { 200, 200, 200, 50 });
+    if (on) _background = new ColorRect(
+        { _dest->x - 4, _dest->y - 4, _dest->w + 8, _dest->h + 8 },
+        { 200, 200, 200, 50 }
+	);
 }
 
 // Render methods

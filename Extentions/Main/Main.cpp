@@ -4,6 +4,7 @@ using namespace EZ;
 Main::Main(EZ::Window* mainWindow)
     : mainWindow(mainWindow)
     , running(true)
+	, BackGround({0, 0, 0, 255})
 {
     FPS(20);
     CanvasItem::window = mainWindow;
@@ -57,7 +58,7 @@ void Main::_render()
 {
     mainWindow->Clear();
     Render();
-    mainWindow->SetColor({0, 0, 0, 255});
+    mainWindow->SetColor(BackGround);
     mainWindow->DrawRect({0, 0, 0, 0});
     mainWindow->Render();
 }
