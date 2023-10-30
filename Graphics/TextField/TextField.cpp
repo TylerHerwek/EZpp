@@ -9,13 +9,13 @@ TextField::TextField()
     , _texture(nullptr)
     , _fontSize(0)
     , _background(nullptr)
-    , _color(new ::Color)
+    , _color(new EZ::Color)
 {
 }
 
 TextField::TextField(const TextField& other)
     : _dest(new SDL_Rect)
-    , _text(nullptr)
+  , _text(nullptr)
     , _font(nullptr)
     , _texture(nullptr)
     , _background(new ColorRect(*other._background))
@@ -156,9 +156,7 @@ void TextField::SetBackGround(const bool on)
 // Render methods
 void TextField::Render() const
 {
-    if (_background != nullptr)
-        _background->Render();
-
+    if (_background) _background->Render();
     if (!_texture) {
         print("You did not initialize the font!");
         print("Try TextField::SetFont");

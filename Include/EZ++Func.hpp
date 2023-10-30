@@ -5,3 +5,4 @@
 #include "../Functionality/SDL/SDL.hpp"
 #include "../Functionality/Window/Window.hpp"
 #include "../Functionality/Color/Color.hpp"
+#include "../Functionality/Timer/Timer.hpp"
