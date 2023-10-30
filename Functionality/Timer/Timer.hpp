@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL_stdinc.h>
+#include "string"
 
 namespace EZ::Timer {
 
@@ -10,6 +11,9 @@ struct Time {
 };
 
 Time Compile(const Uint16 seconds);
+
+enum TIME { SECOND, MINUTE, HOUR };
+std::string ToString(const Time time, const TIME depth);
 
 class Timer {
 public:
