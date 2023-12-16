@@ -1,16 +1,17 @@
 #pragma once
 #include "../ColorRect/ColorRect.hpp"
 #include "../Sprite/Sprite.hpp"
+#include "string"
 
 namespace EZ {
 class Button {
 public:
-    Button(Point* mouse);
-    Button(Point* mouse, const Rect& body);
+    Button(const Point* const mouse);
+    Button(const Point* const mouse, const Rect& body);
     ~Button();
 
-    void SetHover(const char* URL);
-    void SetNormal(const char* URL);
+    void SetHover(const std::string& URL);
+    void SetNormal(const std::string& URL);
 
     void Pos(const Point pos);
     Point Pos() const;
@@ -20,17 +21,19 @@ public:
 
     void SetBackground(const bool on);
 
-    bool Hover() const;
 
     void Update();
     void Render() const;
+
+    const bool Hover() const;
+	int Value;
+	bool Disabled;
 
 private:
     Rect* _body;
     Sprite *_normalTex, *_hoverTex;
     ColorRect* _background;
-
-    const Point* _mouse;
-    bool _hover;
+    const Point* const _mouse;
+	bool _hover;
 };
 }

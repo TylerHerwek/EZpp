@@ -15,7 +15,7 @@ TextField::TextField()
 
 TextField::TextField(const TextField& other)
     : _dest(new SDL_Rect)
-  , _text(nullptr)
+  	, _text(nullptr)
     , _font(nullptr)
     , _texture(nullptr)
     , _background(new ColorRect(*other._background))
@@ -38,9 +38,8 @@ TextField::~TextField()
     SDL_DestroyTexture(_texture);
 }
 
-unique_ptr<TextField> TextField::Duplicate() const
-{
-    return std::make_unique<TextField>(*this);
+unique_ptr<TextField> TextField::Duplicate() const {
+    return std::make_unique<TextField>(*this); 
 }
 
 void TextField::SetFont(const string& path, const Uint16 size)
@@ -114,26 +113,33 @@ const char* TextField::Text() const
     return _text->c_str();
 }
 
-void TextField::Color(const EZ::Color& other)
-{
+void TextField::Color(const EZ::Color& other) {
     _color->Set(other.R, other.G, other.B);
     _color->A = other.A;
-    Text(*_text);
-}
 
-const ::Color* const TextField::Color() const
-{
-    return _color;
-}
+    SDL_Surface* surf = TTF_RenderText_Solid(_font, _text->c_str(), _color->FormatToSDLStd());
+    if (!surf) {
+    	print("failed to create Surface in ::TextField::Text(set): " << SDL_GetError());
+    	SDL_FreeSurface(surf); return;
+    }
+
+    SDL_DestroyTexture(_texture);
+    _texture = SDL_CreateTextureFromSurface(window->renderer, surf);
+    if (!_texture) {
+        print("failed to create texture in ::TextField::Text(set): " << SDL_GetError());
+        _texture = nullptr;
+    }
+    SDL_FreeSurface(surf);
+};
+
+const EZ::Color* const TextField::Color() const { return _color; };
 
 // Position getters and setters
-void TextField::Pos(const Point pos)
-{
-    _dest->x = pos.X;
-    _dest->y = pos.Y;
+void TextField::Pos(const Point pos) {
+	_dest->x = pos.X;
+	_dest->y = pos.Y;
 
-    if (!_background)
-        return;
+	if (!_background) return;
     _background->Pos = Point(_dest->x - 4, _dest->y - 4);
 }
 

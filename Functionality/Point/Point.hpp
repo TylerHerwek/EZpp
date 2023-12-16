@@ -14,6 +14,7 @@ public:
     Point(int p);
 
     operator Point2() const;
+	void Print() const;
 
     Point operator+(const Point& other) const;
     Point operator-(const Point& other) const;

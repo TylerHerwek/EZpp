@@ -1,23 +1,23 @@
 #pragma once
 #include "../../Include/EZ++Func.hpp"
+#include "string"
 
 namespace EZ {
 
 class TextField;
-enum class SPRITE { SCALE,
-    FITBOX };
+enum class SPRITE { SCALE, FITBOX };
 
 class Sprite : public CanvasItem {
 public:
     Sprite();
-    Sprite(const Point pos, const char* imageURL);
+    Sprite(const Point pos, const std::string& imageURL);
     Sprite(const Sprite& other);
     ~Sprite();
 
     CanvasItem* Duplicate() const;
 	bool Visible;
 
-    void SetTexture(const char* imageURL);
+    void SetTexture(const std::string& imageURL, const bool keepSize = true);
     void Render() const;
 
     void SetMode(const SPRITE mode);
@@ -33,7 +33,7 @@ public:
 
 private:
     SDL_Texture* _tex;
-    const char* _url;
+    std::string _url;
 
     SPRITE _mode;
     SDL_Rect* _dest;

@@ -1,18 +1,21 @@
 #include "Button.hpp"
+#include <string>
 using namespace EZ;
 
-Button::Button(Point* mouse)
+Button::Button(const Point* const mouse)
     : _mouse(mouse)
     , _body(new Rect)
     , _background(nullptr)
     , _hover(true)
     , _hoverTex(nullptr)
     , _normalTex(nullptr)
+	, Value(0)
+	, Disabled(false)
 {
-    SetBackground(true);
+    SetBackground(false);
 }
 
-Button::Button(Point* mouse, const Rect& b)
+Button::Button(const Point* const mouse, const Rect& b)
     : Button(mouse)
 {
     Pos(b.Pos);
@@ -34,7 +37,7 @@ Button::~Button()
     _background = nullptr;
 }
 
-void Button::SetHover(const char* URL)
+void Button::SetHover(const std::string& URL)
 {
     delete _hoverTex;
 
@@ -43,7 +46,7 @@ void Button::SetHover(const char* URL)
     _hoverTex->Size(_body->Size);
 }
 
-void Button::SetNormal(const char* URL)
+void Button::SetNormal(const std::string& URL)
 {
     delete _normalTex;
 
@@ -90,13 +93,12 @@ void Button::Size(const Point size)
         _hoverTex->Size(size);
 }
 
-Point Button::Size() const
-{
+Point Button::Size() const {
     return _body->Size;
 }
 
-void Button::Update()
-{
+void Button::Update() {
+	if(Disabled) return;
     if (!_hover && _body->Collides(*_mouse)) {
         _hover = true;
         if (_background)
@@ -108,12 +110,9 @@ void Button::Update()
     }
 }
 
-void Button::Render() const
-{
-    if (_background)
-        _background->Render();
-
-    if (_hover) {
+void Button::Render() const {
+    if (_background) _background->Render();
+    if (_hover || Disabled) {
         if (!_hoverTex) {
             print("The hover texture is unintitialized!");
             print("Initialize it using Button::SetHover");
@@ -130,7 +129,6 @@ void Button::Render() const
     }
 }
 
-bool Button::Hover() const
-{
-    return _hover;
-}
+const bool Button::Hover() const {
+	return _hover;
+};

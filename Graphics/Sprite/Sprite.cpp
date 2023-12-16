@@ -1,22 +1,23 @@
 #include "Sprite.hpp"
 #include <cstdio>
+#include <string>
 using namespace EZ;
 
 Sprite::Sprite()
-    : _tex(nullptr)
-    , _url(nullptr)
-    , _dest(new SDL_Rect)
+	: _tex(nullptr)
+	, _url("undefined")
+	, _dest(new SDL_Rect)
 	, Visible(true)
 {
-    *_dest = { 0, 0, 0, 0 };
-    SetMode(SPRITE::SCALE);
+	*_dest = { 0, 0, 0, 0 };
+	SetMode(SPRITE::SCALE);
 }
 
-Sprite::Sprite(const Point pos, const char* imageURL)
+Sprite::Sprite(const Point pos, const std::string& imageURL)
     : Sprite()
 {
     Pos(pos);
-    SetTexture(imageURL);
+    SetTexture(imageURL, false);
 }
 
 Sprite::Sprite(const Sprite& other)
@@ -25,9 +26,9 @@ Sprite::Sprite(const Sprite& other)
     , _dest(new SDL_Rect)
 	, Visible(other.Visible)
 {
-    *_dest = *other._dest;
-    SetTexture(_url);
     SetMode(other._mode);
+    SetTexture(_url);
+    *_dest = *other._dest;
 }
 
 Sprite::~Sprite()
@@ -56,11 +57,11 @@ void Sprite::Render() const
     SDL_RenderCopy(window->renderer, _tex, NULL, _dest);
 }
 
-void Sprite::SetTexture(const char* imgURL)
+void Sprite::SetTexture(const std::string& imgURL, const bool keepSize)
 {
     if (_tex != nullptr)
         SDL_DestroyTexture(_tex);
-    _tex = IMG_LoadTexture(window->renderer, imgURL);
+    _tex = IMG_LoadTexture(window->renderer, imgURL.c_str());
 
     if (!_tex) {
         perror("Could not load texture " << imgURL << " Error: " << SDL_GetError());
@@ -68,10 +69,11 @@ void Sprite::SetTexture(const char* imgURL)
         return;
     }
 
-    SDL_Surface* surf = IMG_Load(imgURL);
-    _dest->w = surf->w;
-    _dest->h = surf->h;
-
+    SDL_Surface* surf = IMG_Load(imgURL.c_str());
+	if(!keepSize) {
+		_dest->w = surf->w;
+		_dest->h = surf->h;
+	}
     SDL_FreeSurface(surf);
     _url = imgURL;
 }

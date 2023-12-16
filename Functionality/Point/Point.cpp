@@ -1,5 +1,6 @@
 #include "Point.hpp"
 #include "math.h"
+#include "../SDL/SDL.hpp"
 using namespace EZ;
 
 Point::Point()
@@ -22,6 +23,12 @@ Point::Point(int p)
 
 Point::operator Point2() const {
     return Point2(X, Y);
+}
+
+void Point::Print() const {
+	print("Point:");
+	print("  X:" << X);
+	print("  Y:" << Y);
 }
 
 Point Point::operator+(const Point& other) const
